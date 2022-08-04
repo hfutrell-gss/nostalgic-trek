@@ -3,9 +3,10 @@
     public class Shield
     {
         private bool isRaised = false;
-        public int Units { get; } = 8000;
+        public int Units { get; private set; } = 8000;
 
-        public bool IsUp()
+
+        public bool IsRaised()
         {
             return isRaised;
         }
@@ -20,17 +21,19 @@
             isRaised = false;
         }
 
+        public void AcceptPower(int units)
+        {
+            Units += units;
+        }
 
+        public void AcceptDamage(int units)
+        {
+            Units -= units;
+        }
+
+        public bool IsBuckled()
+        {
+            return Units <= 0;
+        }
     }
-
-    interface IEnergyConsumer
-    {
-
-    }
-
-    interface IEnergySource
-    {
-            
-    }
-
 }
