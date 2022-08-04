@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarTrekConsoleApp", "StarT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{9BDB1C51-8D53-432B-AFC2-9D3A25760724}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorgTestProject", "BorgTestProject\BorgTestProject.csproj", "{C2451A16-0D36-47A1-BB62-BFC58A38D7C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImplementationProject", "ImplementationProject\ImplementationProject.csproj", "{841549BD-79E0-45D3-BAB7-E7F7F2C4A4D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{9BDB1C51-8D53-432B-AFC2-9D3A25760724}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BDB1C51-8D53-432B-AFC2-9D3A25760724}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BDB1C51-8D53-432B-AFC2-9D3A25760724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2451A16-0D36-47A1-BB62-BFC58A38D7C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2451A16-0D36-47A1-BB62-BFC58A38D7C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2451A16-0D36-47A1-BB62-BFC58A38D7C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2451A16-0D36-47A1-BB62-BFC58A38D7C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{841549BD-79E0-45D3-BAB7-E7F7F2C4A4D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841549BD-79E0-45D3-BAB7-E7F7F2C4A4D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841549BD-79E0-45D3-BAB7-E7F7F2C4A4D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841549BD-79E0-45D3-BAB7-E7F7F2C4A4D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
