@@ -17,6 +17,7 @@ namespace BorgTestProject
             {
                 SubsystemCount = 1
             };
+
             Assert.AreEqual(0, ship.GetRandomValue(ship.SubsystemCount));
         }
 
@@ -31,6 +32,17 @@ namespace BorgTestProject
             Assert.IsNotNull(ship.GetRandomSystem());
         }
 
+        [TestMethod]
+        public void TransfersEnergyToShields()
+        {
+            var ship = new Ship();
+
+            ship.Shield = new Shield();
+
+            ship.TransferEnergyToShield(100);
+
+            Assert.AreEqual(8100, ship.Shield.Units);
+        }
 
     }
 

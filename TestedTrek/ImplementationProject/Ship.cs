@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImplementationProject
 {
     public class Ship
     {
         public int SubsystemCount { get; set; }
+        public Shield Shield { get; set; }
+
         public static Random generator = new Random();
         private Subsystem[] subsystems = new Subsystem[] { new Subsystem() };
 
@@ -24,6 +22,11 @@ namespace ImplementationProject
         public Subsystem GetRandomSystem()
         {
             return subsystems[GetRandomValue(SubsystemCount)];
+        }
+
+        public void TransferEnergyToShield(int units)
+        {
+            Shield.AcceptPower(100);
         }
     }
 }
