@@ -59,6 +59,7 @@ namespace ImplementationProject
             if (Shield.IsRaised())
                 amount = Shield.AcceptDamage(amount);
             subsystems[GetRandomValue(SubsystemCount)].TakeDamage(amount);
+        }
         public void RaiseShield()
         {
             Shield.Raise();
