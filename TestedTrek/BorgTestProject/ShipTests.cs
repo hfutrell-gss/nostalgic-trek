@@ -64,6 +64,17 @@ namespace BorgTestProject
 
             Assert.ThrowsException<Exception>(() => ship.TransferEnergyToShield(11000));
         }
+
+        [TestMethod]
+        public void CanRaiseShield()
+        {
+            var ship = new Ship();
+
+            ship.RaiseShield();
+            
+            Assert.IsTrue(ship.Shield.IsRaised());
+        }
+
     }
 
 }

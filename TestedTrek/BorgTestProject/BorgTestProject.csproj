@@ -45,7 +45,6 @@
     <Compile Include="ShipTests.cs" />
     <Compile Include="ShieldTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ConduitTests.cs" />
     <Compile Include="SubsystemTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -36,8 +36,13 @@ namespace ImplementationProject
             }
 
             Reserves -= units;
+
             Shield.AcceptPower(100);
         }
 
+        public void RaiseShield()
+        {
+            Shield.Raise();
+        }
     }
 }
