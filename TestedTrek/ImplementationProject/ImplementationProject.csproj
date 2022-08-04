@@ -44,6 +44,8 @@
     <Compile Include="EnergyTransfer.cs" />
     <Compile Include="Shield.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ship.cs" />
+    <Compile Include="Subsystem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
