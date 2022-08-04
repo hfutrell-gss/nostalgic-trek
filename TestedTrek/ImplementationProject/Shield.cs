@@ -26,9 +26,16 @@
             Units += units;
         }
 
-        public void AcceptDamage(int units)
+        public int AcceptDamage(int units)
         {
             Units -= units;
+            if (Units < 0)
+            {
+                int passedDamage = -Units;
+                Units = 0;
+                return passedDamage;
+            }
+            return 0;
         }
 
         public bool IsBuckled()

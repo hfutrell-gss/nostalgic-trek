@@ -64,6 +64,24 @@ namespace BorgTestProject
 
             Assert.ThrowsException<Exception>(() => ship.TransferEnergyToShield(11000));
         }
+
+        [TestMethod]
+        public void AllOperationalTrue()
+        {
+            var ship = new Ship();
+
+            Assert.IsTrue(ship.IsFullyOperational);
+        }
+
+        [TestMethod]
+        public void AllOperationalFalse()
+        {
+            var ship = new Ship();
+
+            ship.TakeDamage(100000000);
+
+            Assert.IsFalse(ship.IsFullyOperational);
+        }
     }
 
 }
