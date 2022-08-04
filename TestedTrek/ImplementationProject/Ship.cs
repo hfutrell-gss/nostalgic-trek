@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImplementationProject
 {
     public class Ship
     {
-        public int SubsystemCount { get; set; }
-        public static Random generator = new Random();
         private Subsystem[] subsystems = new Subsystem[] { new Subsystem() };
+
+        public int SubsystemCount { get; set; }
+        public Shield Shield { get; set; }
+
+        public int Reserves { get; private set; } = 10000;
+
+        public static Random generator = new Random();
+        
 
         public Ship()
         {
@@ -25,5 +27,17 @@ namespace ImplementationProject
         {
             return subsystems[GetRandomValue(SubsystemCount)];
         }
+
+        public void TransferEnergyToShield(int units)
+        {
+            if (Reserves - units < 0)
+            {
+                throw new Exception("Not enough energy");
+            }
+
+            Reserves -= units;
+            Shield.AcceptPower(100);
+        }
+
     }
 }
