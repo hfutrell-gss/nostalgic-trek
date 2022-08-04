@@ -44,6 +44,26 @@ namespace BorgTestProject
             Assert.AreEqual(8100, ship.Shield.Units);
         }
 
+        [TestMethod]
+        public void TransferringEnergyToShieldsDepletesShields()
+        {
+            var ship = new Ship();
+
+            ship.Shield = new Shield();
+
+            ship.TransferEnergyToShield(100);
+
+            Assert.AreEqual(9900, ship.Reserves);
+        }
+
+        [TestMethod]
+        public void CannotTransferMoreEnergyThanAvailable()
+        {
+            var ship = new Ship();
+            ship.Shield = new Shield();
+
+            Assert.ThrowsException<Exception>(() => ship.TransferEnergyToShield(11000));
+        }
     }
 
 }
