@@ -1,4 +1,6 @@
-﻿namespace ImplementationProject
+﻿using System.Data.SqlTypes;
+
+namespace ImplementationProject
 {
     public class Shield
     {
@@ -21,9 +23,18 @@
             isRaised = false;
         }
 
-        public void AcceptPower(int units)
+        public int AcceptPower(int units)
         {
+            var overload = 0;
+
             Units += units;
+            if (Units > 10000)
+            {
+                overload = Units - 10000;
+                Units = 10000;
+            }
+
+            return overload;
         }
 
         public int AcceptDamage(int units)

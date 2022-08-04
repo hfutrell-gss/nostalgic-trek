@@ -82,6 +82,14 @@ namespace BorgTestProject
 
             Assert.IsFalse(ship.IsFullyOperational);
         }
+        public void CanRaiseShield()
+        {
+            var ship = new Ship();
+
+            ship.RaiseShield();
+            
+            Assert.IsTrue(ship.Shield.IsRaised());
+        }
     }
 
 }

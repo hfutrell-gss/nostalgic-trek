@@ -83,5 +83,31 @@ namespace BorgTestProject
 
             Assert.IsFalse(shield.IsBuckled());
         }
+
+        [TestMethod]
+        public void OverPoweringShieldsDoesNotFillPastDischarge()
+        {
+            var shield = new Shield();
+
+            shield.AcceptPower(10000);
+
+            Assert.AreEqual(10000, shield.Units);
+        }
+
+        [TestMethod]
+        public void DoesNotReturnOverloadValue_WhenNotOverloaded()
+        {
+            var shield = new Shield();
+
+            Assert.AreEqual(0, shield.AcceptPower(1000));
+        }
+
+        [TestMethod]
+        public void ReturnsOverloadAmount_WhenOverloaded()
+        {
+            var shield = new Shield();
+
+            Assert.AreEqual(1000, shield.AcceptPower(3000));
+        }
     }
 }
