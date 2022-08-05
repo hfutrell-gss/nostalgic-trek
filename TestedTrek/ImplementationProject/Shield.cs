@@ -1,6 +1,4 @@
-﻿using System.Data.SqlTypes;
-
-namespace ImplementationProject
+﻿namespace ImplementationProject
 {
     public class Shield
     {
@@ -43,15 +41,14 @@ namespace ImplementationProject
             if (Units < 0)
             {
                 int passedDamage = -Units;
+
+                Lower();
+                
                 Units = 0;
                 return passedDamage;
             }
             return 0;
         }
 
-        public bool IsBuckled()
-        {
-            return Units <= 0;
-        }
     }
 }

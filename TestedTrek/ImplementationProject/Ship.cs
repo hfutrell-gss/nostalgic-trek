@@ -7,7 +7,7 @@ namespace ImplementationProject
         private Subsystem[] subsystems = new Subsystem[] { new Subsystem("Phaser", 300), new Subsystem("Shields", 500), new Subsystem("Warp engines", 200) };
 
         public int SubsystemCount { get; set; }
-        public Shield Shield { get; set; }
+        private Shield Shield { get; set; }
 
         public int Reserves { get; private set; } = 10000;
         public bool IsFullyOperational 
@@ -24,12 +24,13 @@ namespace ImplementationProject
         }
 
         public static Random generator = new Random();
-        
 
-        public Ship()
+        public Ship() : this(new Shield()) { }
+
+        public Ship(Shield shield)
         {
+            Shield = shield;
             SubsystemCount = subsystems.Length;
-            Shield = new Shield();
         }
 
         public int GetRandomValue(int maximum)
@@ -37,9 +38,9 @@ namespace ImplementationProject
             return generator.Next(maximum);
         }
 
-        public Subsystem GetRandomSystem()
+        public Subsystem GetRandomSystem(Func<int, int> randomizer)
         {
-            return subsystems[GetRandomValue(SubsystemCount)];
+            return subsystems[randomizer(SubsystemCount)];
         }
 
         public void TransferEnergyToShield(int units)
@@ -54,12 +55,17 @@ namespace ImplementationProject
             Shield.AcceptPower(100);
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(int amount, Func<int, int> r = null)
         {
             if (Shield.IsRaised())
                 amount = Shield.AcceptDamage(amount);
-            subsystems[GetRandomValue(SubsystemCount)].TakeDamage(amount);
+
+            if (r is null)
+                r = GetRandomValue;
+
+            subsystems[r(SubsystemCount)].TakeDamage(amount);
         }
+
         public void RaiseShield()
         {
             Shield.Raise();

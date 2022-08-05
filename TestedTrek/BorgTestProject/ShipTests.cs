@@ -29,27 +29,27 @@ namespace BorgTestProject
             {
                 SubsystemCount = 1
             };
-            Assert.IsNotNull(ship.GetRandomSystem());
+            Assert.IsNotNull(ship.GetRandomSystem(ship.GetRandomValue));
         }
 
         [TestMethod]
         public void TransfersEnergyToShields()
         {
-            var ship = new Ship();
+            var shield = new Shield();
+            var ship = new Ship(shield);
 
-            ship.Shield = new Shield();
 
             ship.TransferEnergyToShield(100);
 
-            Assert.AreEqual(8100, ship.Shield.Units);
+            Assert.AreEqual(8100, shield.Units);
         }
 
         [TestMethod]
         public void TransferringEnergyToShieldsDepletesShields()
         {
-            var ship = new Ship();
+            var shield = new Shield();
 
-            ship.Shield = new Shield();
+            var ship = new Ship(shield);
 
             ship.TransferEnergyToShield(100);
 
@@ -59,36 +59,74 @@ namespace BorgTestProject
         [TestMethod]
         public void CannotTransferMoreEnergyThanAvailable()
         {
-            var ship = new Ship();
-            ship.Shield = new Shield();
+            var shield = new Shield();
+
+            var ship = new Ship(shield);
 
             Assert.ThrowsException<Exception>(() => ship.TransferEnergyToShield(11000));
         }
 
         [TestMethod]
-        public void AllOperationalTrue()
+        public void IsFullyOperational_WhenNoDamageIsTaken()
         {
-            var ship = new Ship();
+            var ship = new Ship(new Shield());
 
             Assert.IsTrue(ship.IsFullyOperational);
         }
 
         [TestMethod]
-        public void AllOperationalFalse()
+        public void IsNotFullyOperational_WhenSufficientDamageIsTaken()
         {
-            var ship = new Ship();
+            var ship = new Ship(new Shield());
 
             ship.TakeDamage(100000000);
 
             Assert.IsFalse(ship.IsFullyOperational);
         }
+
+        [TestMethod]
         public void CanRaiseShield()
         {
-            var ship = new Ship();
+            var shield = new Shield();
+            var ship = new Ship(shield);
 
             ship.RaiseShield();
             
-            Assert.IsTrue(ship.Shield.IsRaised());
+            Assert.IsTrue(shield.IsRaised());
+        }
+
+        [TestMethod]
+        public void GivenTheShieldIsUp_WhenTakesDamage_ThenShieldAbsorbsDamage()
+        {
+            var ship = new Ship(new Shield());
+            ship.RaiseShield();
+            ship.TakeDamage(8000);
+
+            Assert.IsTrue(ship.IsFullyOperational);
+        }
+
+        [TestMethod]
+        public void GivenTheShieldIsDown_WhenTakesDamage_ThenShipAbsorbsDamage()
+        {
+            var shield = new Shield();
+            shield.Lower();
+            
+            var ship = new Ship(shield);
+            
+            ship.TakeDamage(1);
+
+            Assert.IsFalse(ship.IsFullyOperational);
+        }
+
+        [TestMethod]
+        public void GivenSystemTakesDamage()
+        {
+            var ship = new Ship();
+
+            ship.TakeDamage(1, (i) => 1);
+
+            Assert.IsFalse(ship.GetRandomSystem((i) => 1).IsOperational);
+            
         }
     }
 

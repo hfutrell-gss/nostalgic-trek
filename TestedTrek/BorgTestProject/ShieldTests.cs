@@ -65,23 +65,27 @@ namespace BorgTestProject
         }
 
         [TestMethod]
-        public void ShieldBucklesAtThreshold()
+        public void  WhenShieldReceivesDamageBeyondThreshold_ThenShieldDrops()
         {
             var shield = new Shield();
 
-            shield.AcceptDamage(8100);
+            shield.Raise();
 
-            Assert.IsTrue(shield.IsBuckled());
+            shield.AcceptDamage(8001);
+
+            Assert.IsFalse(shield.IsRaised());
         }
 
         [TestMethod]
-        public void ShieldDoesNotBuckle_WhenNotBelowThreshold()
+        public void WhenShieldDoesNotReceiveDamageBeyondThreshold_ThenItDoesNotDrop()
         {
             var shield = new Shield();
 
-            shield.AcceptDamage(5000);
+            shield.Raise();
 
-            Assert.IsFalse(shield.IsBuckled());
+            shield.AcceptDamage(1);
+
+            Assert.IsTrue(shield.IsRaised());
         }
 
         [TestMethod]
